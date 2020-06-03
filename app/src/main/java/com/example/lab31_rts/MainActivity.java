@@ -17,27 +17,32 @@ public class MainActivity extends AppCompatActivity {
     public void onButtonClick(View view){
         EditText input = findViewById(R.id.number1);
         int num = Integer.parseInt(input.getText().toString());
-        TextView message = findViewById(R.id.Message);
-        TextView result1 = findViewById(R.id.Result1);
-        TextView result2 = findViewById(R.id.Result2);
+        TextView result = findViewById(R.id.Result);
+        String resStr = "";
+        long start = System.nanoTime();
+        long deltaTime;
 
         if(num == 0){
-            message.setText("Zero");
-            result1.setText("0");
-            result2.setText("0");
+            resStr = "Root1 = Root2 = 0";
+            deltaTime = System.nanoTime() - start;
+            resStr += "\nTime = " + deltaTime + " nanoseconds";
+            result.setText(resStr);
             return;
         }
         if(num % 2 == 0){
-            message.setText("Number is even");
-            result1.setText("2");
-            result2.setText(Integer.toString(num/2));
+            resStr = "Root1 = " + (2);
+            resStr += "\nRoot2 = " + (num/2);
+            deltaTime = System.nanoTime() - start;
+            resStr += "\nTime = " + deltaTime + " nanoseconds";
+            result.setText(resStr);
             return;
         }
         int a = (int) Math.ceil(Math.sqrt(num));
         if (a*a == num){
-            message.setText("Perfect square root");
-            result1.setText(Integer.toString(a));
-            result2.setText(Integer.toString(a));
+            resStr = "Root1 = Root2 = " + a;
+            deltaTime = System.nanoTime() - start;
+            resStr += "\nTime = " + deltaTime + " nanoseconds";
+            result.setText(resStr);
             return;
         }
         int b;
@@ -49,9 +54,11 @@ public class MainActivity extends AppCompatActivity {
             else
                 a++;
         }
-        message.setText("Result");
-        result1.setText(Integer.toString(a - b));
-        result2.setText(Integer.toString(a + b));
+        resStr = "Root1 = " + (a-b);
+        resStr += "\nRoot2 = " + (a+b);
+        deltaTime = System.nanoTime() - start;
+        resStr += "\nTime = " + deltaTime + " nanoseconds";
+        result.setText(resStr);
         return;
     }
 }
